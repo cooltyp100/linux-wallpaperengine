@@ -7,6 +7,7 @@
 #include <getopt.h>
 #include <SDL_mixer.h>
 #include <SDL.h>
+#include <SDL_version.h>
 
 // support for randr extended screens
 #include <X11/Xlib.h>
@@ -274,9 +275,17 @@ int main (int argc, char* argv[])
     {
         int mixer_flags = MIX_INIT_MP3 | MIX_INIT_FLAC | MIX_INIT_OGG;
 
+        SDL_version sdlVersion;
+        SDL_GetVersion(&sdlVersion);
+
+        wp::irrlicht::device->getLogger()->log("SDL version", (std::to_string(sdlVersion.major) + "." +
+                                                               std::to_string(sdlVersion.minor) + "." +
+                                                               std::to_string(sdlVersion.patch)).c_str(),
+                                               irr::ELL_INFORMATION);
+
         if (SDL_Init (SDL_INIT_AUDIO) < 0 || mixer_flags != Mix_Init (mixer_flags))
         {
-            wp::irrlicht::device->getLogger ()->log ("Cannot initialize SDL audio system", irr::ELL_ERROR);
+            wp::irrlicht::device->getLogger ()->log ("Cannot initialize SDL audio system", SDL_GetError(), irr::ELL_ERROR);
             return -1;
         }
 
