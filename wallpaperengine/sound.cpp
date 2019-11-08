@@ -38,7 +38,7 @@ namespace wp
             readfile->read (filebuffer, filesize);
 
             sdlRwops = SDL_RWFromConstMem(filebuffer, filesize);
-            music = Mix_LoadMUS_RW (sdlRwops);
+            music = Mix_LoadMUS_RW (sdlRwops, true);
             readfile->drop ();
 
             if (music == nullptr)
