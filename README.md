@@ -13,8 +13,8 @@ Wallpaper Engine is a software designed by [Kristjan Skutta](https://store.steam
 - Irrlicht
 - LZ4
 - ZLIB
-- SDL
-- SDL_mixer
+- SDL2
+- SDL2_mixer
 - X11
 - Xrandr
 
